@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Viscoin</title>
+		<link rel="icon" href="/logo.svg">
+        <meta name="theme-color" content="#090a16">
+        <meta name="title" content="Viscoin">
+        <meta name="description" content="Viscoin is an experimental digital currency that enables instant payments to anyone, anywhere in the world.">
+		<meta name="apple-mobile-web-app-title" content="Viscoin">
+		<meta name="application-name" content="Viscoin">
+		<meta property="og:title" content="Viscoin" />
+		<meta name="og:description" content="Viscoin is an experimental digital currency that enables instant payments to anyone, anywhere in the world.">
+		<meta property="og:image" content="/logo.svg" />
+    </head>
+    <body>
+        <noscript>
+			<strong>Sorry, but the website doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+		</noscript>
+		<script>
+			(() => {
+				const prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const persistedColorPreference = localStorage.getItem('theme') || 'auto';
+				if (persistedColorPreference === 'dark' || (prefersDarkMode && persistedColorPreference !== 'light')) {
+					document.documentElement.classList.toggle('dark', true);
+				}
+			})();
+		</script>
+        <div id="app" class="h-full"></div>
+		<script type="module" src="/src/browserify/bundle.js"></script>
+		<script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

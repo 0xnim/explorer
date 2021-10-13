@@ -1,0 +1,10 @@
+window.Address = require('viscoin/lib/src/Address').default
+window.addressFromPublicKey = require('viscoin/lib/src/addressFromPublicKey').default
+window.publicKeyFromPrivateKey = require('viscoin/lib/src/publicKeyFromPrivateKey').default
+window.base58 = require('viscoin/lib/src/base58').default
+window.keygen = require('viscoin/lib/src/keygen').default
+window.parseBigInt = require('viscoin/lib/src/parseBigInt').default
+window.beautifyBigInt = require('viscoin/lib/src/beautifyBigInt').default
+window.Transaction = require('viscoin/lib/src/Transaction').default
+window.qrcode = require('qrcode')
+window.Buffer = Buffer
