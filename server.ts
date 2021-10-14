@@ -8,11 +8,94 @@ const app = express()
 app.use(express.static('./dist'))
 app.listen(8080)
 
+const beautify = (block) => {
+    try {
+        for (const i in block) {
+            if (block[i] instanceof Buffer) block[i] = block[i].toString('hex')
+            if (i === 'transactions') block[i] = block[i].map(transaction => {
+                for (const i in transaction) {
+                    if ([ 'to', 'from' ].includes(i)) transaction[i] = viscoin.Address.toString(transaction[i])
+                    else if (transaction[i] instanceof Buffer) transaction[i] = transaction[i].toString('hex')
+                }
+                return transaction
+            })
+        }
+        return block
+    }
+    catch {
+        return null
+    }
+}
+
 const api = express.Router()
 // middleware specific to this router
 api.use(function timeLog (req, res, next) {
     console.log('Time: ', Date.now())
     next()
+})
+api.get('/search', (req, res) => {
+    const query = req.query.q
+    console.log(query)
+    try {
+        if (query === 'latest') {
+            viscoin.HTTPApi.getLatestBlock(HTTP_API).then(block => {
+                if (block === null) return res.status(404).end()
+                res.send(JSON.stringify({
+                    type: 'block',
+                    query,
+                    data: beautify(block)
+                }))
+            }).catch(err => console.log(err))
+            return
+        }
+    }
+    catch {}
+    try {
+        const hash = Buffer.from(query, 'hex')
+        if (Buffer.byteLength(hash) === 32) {
+            viscoin.HTTPApi.getBlockByHash(HTTP_API, hash).then(block => {
+                if (block === null) return res.status(404).end()
+                res.send(JSON.stringify({
+                    type: 'block',
+                    query,
+                    data: beautify(block)
+                }))
+            }).catch(err => console.log(err))
+            return
+        }
+    }
+    catch {}
+    try {
+        const height = parseInt(query)
+        if (!isNaN(height)) {
+            viscoin.HTTPApi.getBlockByHeight(HTTP_API, height).then(block => {
+                if (block === null) return res.status(404).end()
+                res.send(JSON.stringify({
+                    type: 'block',
+                    query,
+                    data: beautify(block)
+                }))
+            }).catch(err => console.log(err))
+            return
+        }
+    }
+    catch {}
+    try {
+        if (query !== '') {
+            const address = viscoin.Address.toBuffer(query)
+            viscoin.HTTPApi.getBalanceOfAddress(HTTP_API, viscoin.Address.toString(address)).then(balance => {
+                if (balance === null) return res.status(404).end()
+                res.send(JSON.stringify({
+                    type: 'address',
+                    query,
+                    data: balance
+                }))
+            }).catch(err => console.log(err))
+            return
+        }
+    }
+    catch {}
+    res.send(null).end()
 })
 // define the home page route
 api.get('/block', function (req, res) {
