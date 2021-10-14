@@ -1,7 +1,7 @@
 <template>
 	<div class="min-h-full grid grid-layout">
 		<Navbar />
-		<div id="container" class="grid grid-layout-container lg:custom-scroll">
+		<div id="container" class="grid grid-layout-container custom-scroll">
 			<div class="bg-white dark:bg-gray-900">
 				<router-view />
 			</div>

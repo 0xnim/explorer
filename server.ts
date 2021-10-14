@@ -112,10 +112,10 @@ api.get('/about', function (req, res) {
 app.use('/api', api)
 
 const HTTP_API = { host: 'localhost', port: 80 }
-const tcp_client = viscoin.TCPApi.createClient()
-tcp_client.connect(9332, 'localhost')
-tcp_client.on('block', block => console.log(block))
-tcp_client.on('transaction', transaction => console.log(transaction))
+// const tcp_client = viscoin.TCPApi.createClient()
+// tcp_client.connect(9332, 'localhost')
+// tcp_client.on('block', block => console.log(block))
+// tcp_client.on('transaction', transaction => console.log(transaction))
 viscoin.HTTPApi.getLatestBlock(HTTP_API).then(res => {
     console.log(res)
 }).catch(err => console.log(err))

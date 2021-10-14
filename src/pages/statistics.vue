@@ -12,7 +12,7 @@
 		"
 	>
 		<div class="col-span-full">
-            Data
+            Coming soon...
 		</div>
 	</div>
 </template>
