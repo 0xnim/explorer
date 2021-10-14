@@ -20,30 +20,7 @@
 export default {
 	data() {
 		return {
-            block: this.$route.params.block,
-			search_value: '',
-			search_result_json: null
 		}
-	},
-	methods: {
-		search(e) {
-			// if (e.key !== 'Enter') return
-			setTimeout(() => {
-				fetch('/api/search?q=' + this.search_value).then(res => {
-					console.log(res)
-					res.json().then(data => {
-						console.log(data)
-						this.search_result_json = data
-					}).catch(err => {
-						this.search_result_json = {}
-					})
-				})
-			}, 250)
-		}
-	},
-	mounted() {
-		this.$refs.search.focus()
-		this.$refs.search.select()
 	}
 }
 </script>
