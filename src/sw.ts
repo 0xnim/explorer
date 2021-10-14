@@ -5,7 +5,7 @@ import { StaleWhileRevalidate, CacheFirst } from 'workbox-strategies'
 import { ExpirationPlugin } from 'workbox-expiration'
 import { CacheableResponsePlugin } from 'workbox-cacheable-response'
 setCacheNameDetails({
-	prefix: 'viscoin',
+	prefix: 'vis',
 	suffix: 'v1',
 	precache: 'precache',
 	runtime: 'runtime',
@@ -14,7 +14,7 @@ precacheAndRoute(self.__WB_MANIFEST)
 cleanupOutdatedCaches()
 registerRoute(new NavigationRoute(createHandlerBoundToURL('index.html')))
 const defaultStrategy = new StaleWhileRevalidate({
-	cacheName: 'viscoin-external-v1',
+	cacheName: 'vis-external-v1',
 	plugins: [
 		new ExpirationPlugin({
 			maxEntries: 50,
@@ -35,7 +35,7 @@ setDefaultHandler((args) => {
 registerRoute(
 	/^.*\\.(png|jpg|jpeg|gif|svg|ico)/i,
 	new CacheFirst({
-		cacheName: 'viscoin-media-v1',
+		cacheName: 'vis-media-v1',
 		plugins: [
 			new ExpirationPlugin({
 				maxEntries: 50,

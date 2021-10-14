@@ -247,33 +247,13 @@
 		to: [
 			{
 				to: '/',
-				text: 'Viscoin'
-			},
-			{
-				to: '/wallet',
-				text: 'Wallet'
-			},
-			{
-				to: '/explorer',
-				text: 'Explorer'
-			},
-			{
-				to: '/docs',
-				text: 'Documentation'
-			},
-			{
-				to: '/community',
-				text: 'Community'
+				text: 'Home'
 			}
 		],
 		href: [
 			{
-				href: 'https://github.com/viscoin/viscoin',
-				text: 'Github'
-			},
-			{
-				href: 'https://discord.gg/wnJ2BCmaja',
-				text: 'Discord'
+				href: 'https://viscoin.net',
+				text: 'Viscoin'
 			}
 		]
 	}

@@ -5,7 +5,6 @@ import Pages from 'vite-plugin-pages'
 import ViteComponents from 'vite-plugin-components'
 import ViteIcons, { ViteIconsResolver } from 'vite-plugin-icons'
 import { resolve } from 'path'
-import { execSync } from 'child_process'
 import { readFileSync } from 'fs'
 export default defineConfig({
 	build: {
@@ -17,7 +16,6 @@ export default defineConfig({
 		}
 	},
 	define: {
-		GIT_COMMIT_HASH: JSON.stringify(execSync('git rev-parse HEAD').toString().trim()),
 		BUILT_AT: JSON.stringify(Date.now())
 	},
 	plugins: [
@@ -32,11 +30,11 @@ export default defineConfig({
 			manifest: {
 				theme_color: '#090a16',
 				background_color: '#090a16',
-				name: 'Viscoin',
-				short_name: 'Viscoin',
+				name: 'Vis',
+				short_name: 'Vis',
 				start_url: '.',
 				display: 'standalone',
-				description: "Viscoin",
+				description: "Vis",
 				icons: [
 					{
 						src: '/android-chrome-192x192.png',
