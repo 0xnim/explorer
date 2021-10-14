@@ -95,6 +95,7 @@
 						</button>
 					</div>
 					<div class="relative z-0 flex-1 px-2 flex lg:gap-2 items-center justify-center md:justify-end">
+						<Searchbar class="hidden mr-10 w-full md:flex" v-if="$route.params.search || $route.params.explorer" />
 						<button
 							class="
 								bg-gray-200
@@ -126,6 +127,7 @@
 								aria-hidden="true"
 							/>
 						</button>
+						<Searchbar v-if="$route.params.search || $route.params.explorer" class="md:hidden w-full mx-10" />
 					</div>
 					<div class="relative z-10 flex items-center md:hidden">
 						<button

@@ -67,7 +67,7 @@ api.get('/search', (req, res) => {
     catch {}
     try {
         const height = parseInt(query)
-        if (!isNaN(height)) {
+        if (!isNaN(height) && height.toString() === query) {
             viscoin.HTTPApi.getBlockByHeight(HTTP_API, height).then(block => {
                 if (block === null) return res.status(404).end()
                 res.send(JSON.stringify({
@@ -81,17 +81,19 @@ api.get('/search', (req, res) => {
     }
     catch {}
     try {
-        if (query !== '') {
+        if (query !== '' && query.length > 5) {
             const address = viscoin.Address.toBuffer(query)
-            viscoin.HTTPApi.getBalanceOfAddress(HTTP_API, viscoin.Address.toString(address)).then(balance => {
-                if (balance === null) return res.status(404).end()
-                res.send(JSON.stringify({
-                    type: 'address',
-                    query,
-                    data: balance
-                }))
-            }).catch(err => console.log(err))
-            return
+            if (Buffer.byteLength(address) === 20) {
+                viscoin.HTTPApi.getBalanceOfAddress(HTTP_API, viscoin.Address.toString(address)).then(balance => {
+                    if (balance === null) return res.status(404).end()
+                    res.send(JSON.stringify({
+                        type: 'address',
+                        query,
+                        data: balance
+                    }))
+                }).catch(err => console.log(err))
+                return
+            }
         }
     }
     catch {}
