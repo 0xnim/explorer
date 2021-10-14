@@ -21,7 +21,7 @@
 				Explore data stored on Viscoin
 			</p> -->
 			<input
-				@keydown="import_wallet"
+				@keydown="search(search_value)"
 				class="
 					w-full
 					bg-gray-200
@@ -33,10 +33,27 @@
 					dark:hover:bg-gray-900
 					dark:hover:text-white
 				"
-				type="text" v-model="key" placeholder="Search for transactions, addresses, blocks and embedded text data...">
+				type="text" :v-bind=search_value placeholder="Search for transactions, addresses, blocks and embedded text data...">
+			<Button text="sdf" @click=search />
 			<Logo class="filter drop-shadow-lg w-80 mx-auto" />
 		</div>
 	</div>
 </template>
 <script setup lang="ts">
+export default {
+	data() {
+		return {
+            block: this.$route.params.block,
+			search_value: ''
+		}
+	},
+	methods: {
+		search: (search_value) => {
+			console.log('search')
+			fetch('/block').then(res => {
+				res.json().then(data => console.log(data))
+			})
+		}
+	}
+}
 </script>
