@@ -3,10 +3,12 @@ import * as http from 'http'
 import * as os from 'os'
 import * as viscoin from 'viscoin'
 import * as express from 'express'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
 const app = express()
 app.use(express.static('./dist'))
-app.listen(80)
+app.listen(process.env.port)
 
 const beautify = (block) => {
     try {
@@ -111,7 +113,7 @@ api.get('/about', function (req, res) {
 })
 app.use('/api', api)
 
-const HTTP_API = { host: 'localhost', port: 80 }
+const HTTP_API = { host: 'localhost', port: process.env.http_api_port }
 // const tcp_client = viscoin.TCPApi.createClient()
 // tcp_client.connect(9332, 'localhost')
 // tcp_client.on('block', block => console.log(block))
