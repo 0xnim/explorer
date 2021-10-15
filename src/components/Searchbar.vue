@@ -2,8 +2,7 @@
     <input
         v-model=search_value
         ref="search"
-        v-on:keydown="_search"
-        v-on:keyup="search"
+        v-on:input="search"
         class="
             w-full
             bg-gray-200
@@ -25,12 +24,9 @@ export default {
 		}
 	},
 	methods: {
-		search(e) {
+		search() {
             clearTimeout(this.timer)
             let delay = 250
-            if (e.key === 'Enter') {
-                delay = 0
-            }
             this.timer = setTimeout(() => {
                 if (this.search_value) this.$router.push('/search/' + this.search_value)
                 else this.$router.push('/')
