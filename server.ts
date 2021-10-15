@@ -8,7 +8,7 @@ dotenv.config()
 
 const app = express()
 app.use(express.static('./dist'))
-app.listen(process.env.port)
+app.listen(parseInt(process.env.port))
 
 const beautify = (block) => {
     try {
@@ -113,7 +113,7 @@ api.get('/about', function (req, res) {
 })
 app.use('/api', api)
 
-const HTTP_API = { host: 'localhost', port: process.env.http_api_port }
+const HTTP_API = { host: 'localhost', port: parseInt(process.env.http_api_port) }
 // const tcp_client = viscoin.TCPApi.createClient()
 // tcp_client.connect(9332, 'localhost')
 // tcp_client.on('block', block => console.log(block))
