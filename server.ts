@@ -6,7 +6,7 @@ import * as express from 'express'
 
 const app = express()
 app.use(express.static('./dist'))
-app.listen(8080)
+app.listen(80)
 
 const beautify = (block) => {
     try {
