@@ -7,10 +7,10 @@
     "lint": "eslint src --ext .ts,.vue",
     "lint:fix": "eslint src --ext .ts,.vue --fix",
     "dev": "vite --port 3333",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --p tsconfig.build.json --noEmit && vite build",
     "deploy": "gh-pages -d dist",
     "browserify": "browserify ./src/browserify/dependencies.js -o ./src/browserify/bundle.js",
-    "c": "tsc --p tsconfig.server.json"
+    "cert": "openssl req -nodes -new -x509 -keyout server.key -out server.cert"
   },
   "homepage": "https://viscoin.net/",
   "repository": {

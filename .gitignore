@@ -104,3 +104,8 @@ dist
 .tern-port
 
 bundle.js
+
+server.cert
+server.key
+
+server.js
