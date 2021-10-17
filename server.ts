@@ -106,13 +106,11 @@ const instance = () => {
         res.send(null).end()
     })
     app.use('/api', api)
-    
     https.createServer({
         cert: fs.readFileSync('./server.cert'),
         key: fs.readFileSync('./server.key')
     }, app).listen(443, process.env.host)
 }
-
 if (!process.env.dev && cluster.isPrimary) {
     console.log(`Primary ${process.pid} is running`)
     for (let i = 0; i < os.cpus().length; i++) {
