@@ -9,12 +9,9 @@ dotenv.config()
 
 const instance = () => {
     console.log(`Worker ${process.pid} started`)
-
     const HTTP_API = { host: 'localhost', port: parseInt(process.env.http_api_port) }
-
     const app = express()
     app.use(express.static('./dist'))
-
     const beautify = (block) => {
         try {
             for (const i in block) {
@@ -33,7 +30,6 @@ const instance = () => {
             return null
         }
     }
-    
     const api = express.Router()
     api.use(function timeLog (req, res, next) {
         console.log('Time: ', Date.now())
