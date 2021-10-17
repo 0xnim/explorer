@@ -251,10 +251,10 @@
 				to: '/',
 				text: 'Home'
 			},
-			// {
-			// 	to: '/statistics',
-			// 	text: 'Statistics'
-			// }
+			{
+				to: '/statistics',
+				text: 'Statistics'
+			}
 		],
 		href: [
 			{

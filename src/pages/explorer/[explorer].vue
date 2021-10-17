@@ -104,7 +104,6 @@ export default {
 	methods: {
 		search() {
 			fetch('/api/search?q=' + this.search_value).then(res => {
-				console.log(res)
 				res.json().then(data => {
 					this.search_result_json = data
 				}).catch(err => {

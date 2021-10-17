@@ -13,7 +13,7 @@
 	>
 		<div class="col-span-full">
 			<h1 v-if="!search_result_json?.data" class="text-center pt-20">Vis.gg</h1>
-			<h2 v-if="!search_result_json?.data">Blockchain explorer</h2>
+			<h2 v-if="!search_result_json?.data" class="text-center">Blockchain explorer</h2>
 			<Searchbar />
 			<div class="mt-10">
 				<router-link to="/search/latest">

@@ -5,9 +5,37 @@ import * as os from 'os'
 import * as viscoin from 'viscoin'
 import * as express from 'express'
 import * as dotenv from 'dotenv'
+import * as http from 'http'
 dotenv.config()
 
 const instance = () => {
+    const get =({ host, port }, path: string) => {
+        return <any> new Promise((resolve, reject) => {
+            const req = http.request({
+                host,
+                port,
+                method: 'GET',
+                path
+            }, res => {
+                let str: string = ''
+                res.on('data', chunk => {
+                    str += chunk
+                })
+                res.on('end', () => {
+                    try {
+                        resolve(JSON.parse(str))
+                    }
+                    catch {
+                        reject()
+                    }
+                })
+                res.on('error', () => reject())
+            })
+            req.on('error', () => reject())
+            req.end()
+        })
+    }
+
     console.log(`Worker ${process.pid} started`)
 
     const HTTP_API = { host: 'localhost', port: parseInt(process.env.http_api_port) }
@@ -40,9 +68,13 @@ const instance = () => {
         console.log('Time: ', Date.now())
         next()
     })
+    api.get('/addresses', (req, res) => {
+        get(HTTP_API, '/addresses?amount=10').then(addresses => 
+            res.send(JSON.stringify(addresses))
+        ).catch(err => console.log(err))
+    })
     api.get('/search', (req, res) => {
         const query = req.query.q
-        console.log(query)
         try {
             if (query === 'latest') {
                 viscoin.HTTPApi.getLatestBlock(HTTP_API).then(block => {
@@ -105,16 +137,6 @@ const instance = () => {
         }
         catch {}
         res.send(null).end()
-    })
-    // define the home page route
-    api.get('/block', function (req, res) {
-        viscoin.HTTPApi.getLatestBlock(HTTP_API).then(block => {
-            console.log('block')
-            res.send(JSON.stringify(block))
-        }).catch(err => console.log(err))
-    })
-    api.get('/about', function (req, res) {
-        res.send('About birds')
     })
     app.use('/api', api)
     
