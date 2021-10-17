@@ -18,7 +18,7 @@ const defaultStrategy = new StaleWhileRevalidate({
 	plugins: [
 		new ExpirationPlugin({
 			maxEntries: 50,
-			maxAgeSeconds: 60 * 60 * 24,
+			maxAgeSeconds: 30,
 			purgeOnQuotaError: true
 		}),
 		new CacheableResponsePlugin({
