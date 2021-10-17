@@ -5,37 +5,9 @@ import * as os from 'os'
 import * as viscoin from 'viscoin'
 import * as express from 'express'
 import * as dotenv from 'dotenv'
-import * as http from 'http'
 dotenv.config()
 
 const instance = () => {
-    const get =({ host, port }, path: string) => {
-        return <any> new Promise((resolve, reject) => {
-            const req = http.request({
-                host,
-                port,
-                method: 'GET',
-                path
-            }, res => {
-                let str: string = ''
-                res.on('data', chunk => {
-                    str += chunk
-                })
-                res.on('end', () => {
-                    try {
-                        resolve(JSON.parse(str))
-                    }
-                    catch {
-                        reject()
-                    }
-                })
-                res.on('error', () => reject())
-            })
-            req.on('error', () => reject())
-            req.end()
-        })
-    }
-
     console.log(`Worker ${process.pid} started`)
 
     const HTTP_API = { host: 'localhost', port: parseInt(process.env.http_api_port) }
@@ -69,7 +41,7 @@ const instance = () => {
         next()
     })
     api.get('/addresses', (req, res) => {
-        get(HTTP_API, '/addresses?amount=10').then(addresses => 
+        viscoin.HTTPApi.getAddresses(HTTP_API, 0, 10).then(addresses => 
             res.send(JSON.stringify(addresses))
         ).catch(err => console.log(err))
     })
