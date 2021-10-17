@@ -112,6 +112,7 @@ const instance = () => {
     }, app).listen(443, process.env.host)
 }
 if (!process.env.dev && cluster.isPrimary) {
+    console.log(new Date())
     console.log(`Primary ${process.pid} is running`)
     for (let i = 0; i < os.cpus().length; i++) {
         cluster.fork()
