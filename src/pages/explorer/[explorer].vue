@@ -35,7 +35,7 @@
 							<router-link class="hidden sm:flex" :to="'/search/' + search_result_json.data.previousHash">{{ search_result_json.data.previousHash }}</router-link>
 							<router-link class="sm:hidden" :to="'/search/' + search_result_json.data.previousHash">{{ search_result_json.data.previousHash.slice(0, 32) }}...</router-link>
 						</li>
-						<li class="flex xl:flex-row flex-col justify-between px-2 rounded hover:bg-gray-200 dark:hover:bg-black">
+						<li v-if="search_result_json.data.transactions[0]" class="flex xl:flex-row flex-col justify-between px-2 rounded hover:bg-gray-200 dark:hover:bg-black">
 							<strong>Miner</strong>
 							<router-link :to="'/search/' + search_result_json.data.transactions[0].to">{{ search_result_json.data.transactions[0].to }}</router-link>
 						</li>
