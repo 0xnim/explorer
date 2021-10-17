@@ -35,7 +35,6 @@ const instance = () => {
     }
     
     const api = express.Router()
-    // middleware specific to this router
     api.use(function timeLog (req, res, next) {
         console.log('Time: ', Date.now())
         next()
