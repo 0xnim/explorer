@@ -2,8 +2,8 @@
     <button
         class="
             text-gray-200
-            hover:bg-blue-700 hover:text-white
-            bg-blue-600
+            hover:bg-vis-purple-2 hover:text-white
+            bg-vis-purple-3
             rounded-md
             py-2
             px-3

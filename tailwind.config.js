@@ -18,6 +18,13 @@ module.exports = {
 						2: '#3d83c5',
 						3: '#406bb4'
 					}
+				},
+				vis: {
+					purple: {
+						1: '#5c3ad5',
+						2: '#683dc4',
+						3: '#7540b4'
+					}
 				}
 			},
 			typography: (theme) => ({

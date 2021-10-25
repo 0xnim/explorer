@@ -114,6 +114,7 @@ export default {
 	},
 	mounted() {
 		this.search()
+		document.title = 'Vis.gg - Explorer - ' + this.$route.params.explorer
 	},
 	watch: {
 		search_value: {

@@ -249,7 +249,7 @@
 		to: [
 			{
 				to: '/',
-				text: 'Home'
+				text: 'Search'
 			},
 			{
 				to: '/statistics',
