@@ -62,11 +62,13 @@
 								&nbsp;
 								<span class="text-red-600">➟</span>
 								&nbsp;
-								<span>{{ transaction.amount }}</span>
-								&nbsp;
-								<span class="text-green-600">➟</span>
-								&nbsp;
-								<router-link v-if="transaction.to" :to="'/search/' + transaction.to">{{ transaction.to }}</router-link>
+								<span v-if="transaction.to">
+									<span>{{ transaction.amount }}</span>
+									&nbsp;
+									<span class="text-green-600">➟</span>
+									&nbsp;
+									<router-link :to="'/search/' + transaction.to">{{ transaction.to }}</router-link>
+								</span>
 								<span v-else>Network</span>
 							</span>
 							<span v-if="transaction.minerFee">
