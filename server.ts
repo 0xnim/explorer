@@ -31,9 +31,23 @@ const instance = () => {
         }
     }
     const api = express.Router()
+    api.use(express.urlencoded({ extended: true }))
+    api.use(express.json({ limit: '1kb' }))
     api.use(function timeLog (req, res, next) {
         console.log('Time: ', Date.now())
         next()
+    })
+    api.post('/transaction', (req, res) => {
+        try {
+            const transaction = new viscoin.Transaction(req.body)
+            if (transaction.isValid() !== 0) throw new Error()
+            viscoin.HTTPApi.send(HTTP_API, transaction).then(code => 
+                res.send(JSON.stringify(code))
+            ).catch(err => console.log(500))
+        }
+        catch {
+            res.send(JSON.stringify(400))
+        }
     })
     api.get('/addresses', (req, res) => {
         viscoin.HTTPApi.getAddresses(HTTP_API, 0, 10).then(addresses => 

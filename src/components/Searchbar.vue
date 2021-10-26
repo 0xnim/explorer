@@ -14,7 +14,7 @@
             dark:hover:bg-gray-900
             dark:hover:text-white
         "
-        type="text" placeholder="Search addresses and blocks...">
+        type="text" placeholder="Search addresses and blocks... or paste a transaction">
 </template>
 <script>
 export default {

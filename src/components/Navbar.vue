@@ -53,7 +53,6 @@
 							focus:outline-none
 							focus-visible:ring-1 focus:ring-white dark:focus:ring-black
 						"
-						target="_blank"
 						rel="noopener"
 					>
 						<span class="mr-2">{{ link.text }}</span><heroicons-outline-external-link class="h-5 w-5" />
@@ -212,7 +211,6 @@
 								text-base
 								font-semibold
 							"
-							target="_blank"
 							rel="noopener"
 							@click="isOpen = !isOpen"
 							><span class="mr-2">{{ link.text }}</span><heroicons-outline-external-link class="h-5 w-5 inline-block"
