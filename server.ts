@@ -39,11 +39,17 @@ const instance = () => {
     })
     api.post('/transaction', (req, res) => {
         try {
-            const transaction = new viscoin.Transaction(req.body)
-            if (transaction.isValid() !== 0) throw new Error()
+            const transaction = viscoin.Transaction.spawn(req.body)
+            // console.log(transaction)
+            const code = transaction.isValid()
+            // console.log(code)
+            if (code) return res.end(JSON.stringify(400))
             viscoin.HTTPApi.send(HTTP_API, transaction).then(code => 
                 res.send(JSON.stringify(code))
-            ).catch(err => console.log(500))
+            ).catch(err => {
+                console.log(500)
+                res.send(JSON.stringify(500))
+            })
         }
         catch {
             res.send(JSON.stringify(400))

@@ -54,7 +54,7 @@ export default {
                     'Content-Type': 'application/json'
                 },
                 method: 'POST',
-                body: JSON.stringify(this.transaction)
+                body: JSON.stringify(Transaction.minify(this.transaction))
             }).then(res => {
                 res.json().then(data => {
                     this.response = data
