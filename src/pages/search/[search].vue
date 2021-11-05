@@ -4,9 +4,7 @@
 export default {
 	mounted() {
 		try {
-			const transaction = new Transaction(JSON.parse(this.$route.params.search))
-			if (!transaction.signature) throw new Error()
-			this.$router.replace('/transaction/' + this.$route.params.search)
+			if (this.$route.params.search.startsWith('TX_')) this.$router.replace('/transaction/' + this.$route.params.search)
 		}
 		catch {
 			this.$router.replace('/explorer/' + this.$route.params.search)
