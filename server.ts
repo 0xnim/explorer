@@ -44,7 +44,7 @@ const instance = () => {
             const code = transaction.isValid()
             // console.log(code)
             if (code) return res.end(JSON.stringify(400))
-            viscoin.HTTPApi.send(HTTP_API, transaction).then(code => 
+            viscoin.HTTPApi.send(HTTP_API, transaction).then(code =>
                 res.send(JSON.stringify(code))
             ).catch(err => {
                 console.log(500)
@@ -56,7 +56,7 @@ const instance = () => {
         }
     })
     api.get('/addresses', (req, res) => {
-        viscoin.HTTPApi.getAddresses(HTTP_API, 0, 10).then(addresses => 
+        viscoin.HTTPApi.getAddresses(HTTP_API, 0, 10).then(addresses =>
             res.send(JSON.stringify(addresses))
         ).catch(err => console.log(err))
     })
