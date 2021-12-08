@@ -9,7 +9,7 @@ dotenv.config()
 
 const instance = () => {
     console.log(`Worker ${process.pid} started`)
-    const HTTP_API = { host: 'localhost', port: parseInt(process.env.http_api_port) }
+    const HTTP_API = { host: '35.197.92.9', port: parseInt(process.env.http_api_port) }
     const app = express()
     app.use(express.static('./dist'))
     const beautify = (block) => {
